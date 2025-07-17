@@ -582,6 +582,7 @@
 			z-index: 100;
 			font-size: 20px;
 		}
+
 		.callingus {
 			position: fixed;
 			bottom: 40px;
@@ -596,8 +597,76 @@
 			z-index: 100;
 			font-size: 25px;
 		}
+
 		.copyright {
 			color: white !important;
+		}
+
+		.custom-form {
+			max-width: 600px;
+			margin: 0 auto;
+			font-family: sans-serif;
+		}
+
+		.form-row {
+			display: flex;
+			gap: 20px;
+			margin-bottom: 20px;
+			flex-wrap: wrap;
+		}
+
+		.form-group {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.form-group label {
+			font-size: 14px;
+			font-weight: 500;
+			margin-bottom: 6px;
+			color: #333;
+		}
+
+		.form-group span {
+			color: red;
+		}
+
+		input,
+		textarea {
+			padding: 8px 0;
+			border: none;
+			border-bottom: 1px solid #ccc;
+			font-size: 16px;
+			background: transparent;
+			outline: none;
+			color: #222;
+		}
+
+		input::placeholder,
+		textarea::placeholder {
+			color: #aaa;
+		}
+
+		.full-width {
+			flex-direction: column;
+			width: 100%;
+		}
+
+		.submit-btn {
+			background-color: #f1c40f;
+			color: #fff;
+			padding: 14px 30px;
+			border: none;
+			width: 100%;
+			font-size: 16px;
+			border-radius: 30px;
+			cursor: pointer;
+			transition: background-color 0.3s;
+		}
+
+		.submit-btn:hover {
+			background-color: #e1b500;
 		}
 	</style>
 </head>
@@ -949,257 +1018,55 @@
 												data-quiz-summery="false" data-save-progress="false"
 												data-form-type="general-form" data-stop-vertical-effect=""></div>
 
+											<form class="custom-form">
+												<div class="form-row">
+													<div class="form-group">
+														<label for="first-name">First Name <span>*</span></label>
+														<input type="text" id="first-name" placeholder="Jhon"
+															required />
+													</div>
+													<div class="form-group">
+														<label for="last-name">Last Name <span>*</span></label>
+														<input type="text" id="last-name" placeholder="Doe" required />
+													</div>
+												</div>
 
-											<!----------------------------- 
-			* controls_data : find the the props passed indie of data attribute
-			* props.SubmitResponseMarkup : contains the markup of error or success message
-			* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
-		--------------------------- -->
+												<div class="form-row">
+													<div class="form-group">
+														<label for="email">Email <span>*</span></label>
+														<input type="email" id="email" placeholder="example@mail.com"
+															required />
+													</div>
+													<div class="form-group">
+														<label for="phone">Phone</label>
+														<input type="tel" id="phone" placeholder="+1 (234) 567 890" />
+													</div>
+												</div>
 
-											<script type="text/mf" class="mf-template">
-			function controls_data (value){
-				let currentWrapper = "mf-response-props-id-517";
-				let currentEl = document.getElementById(currentWrapper);
-				
-				return currentEl ? currentEl.dataset[value] : false
-			}
+												<div class="form-row">
+													<div class="form-group">
+														<label for="state">State <span>*</span></label>
+														<input type="text" id="state" placeholder="Gujarat"
+															required />
+													</div>
+													<div class="form-group">
+														<label for="city">City</label>
+														<input type="text" id="city" placeholder="Ahmedabad" />
+													</div>
+												</div>
 
+												<div class="form-row full-width">
+													<div class="form-group">
+														<label for="message">Message</label>
+														<textarea id="message" placeholder="Hello there!"
+															rows="4"></textarea>
+													</div>
+												</div>
 
-			let is_edit_mode = '' ? true : false;
-			let message_position = controls_data('messageposition') || 'top';
-
-			
-			let message_successIcon = controls_data('successicon') || '';
-			let message_errorIcon = controls_data('erroricon') || '';
-			let message_editSwitch = controls_data('editswitchopen') === 'yes' ? true : false;
-			let message_proClass = controls_data('editswitchopen') === 'yes' ? 'mf_pro_activated' : '';
-			
-			let is_dummy_markup = is_edit_mode && message_editSwitch ? true : false;
-
-			
-			return html`
-				<form
-					className="metform-form-content"
-					ref=${parent.formContainerRef}
-					onSubmit=${ validation.handleSubmit( parent.handleFormSubmit ) }
-				
-					>
-			
-			
-					${is_dummy_markup ? message_position === 'top' ?  props.ResponseDummyMarkup(message_successIcon, message_proClass) : '' : ''}
-					${is_dummy_markup ? ' ' :  message_position === 'top' ? props.SubmitResponseMarkup`${parent}${state}${message_successIcon}${message_errorIcon}${message_proClass}` : ''}
-
-					<!--------------------------------------------------------
-					*** IMPORTANT / DANGEROUS ***
-					${html``} must be used as in immediate child of "metform-form-main-wrapper"
-					class otherwise multistep form will not run at all
-					---------------------------------------------------------->
-
-					<div className="metform-form-main-wrapper" key=${'hide-form-after-submit'} ref=${parent.formRef}>
-					${html`
-								<div data-elementor-type="wp-post" key="2" data-elementor-id="517" className="elementor elementor-517">
-				<div className="elementor-element elementor-element-34f5871 e-flex e-con-boxed e-con e-parent" data-id="34f5871" data-element_type="container">
-					<div className="e-con-inner">
-		<div className="elementor-element elementor-element-d4659ed e-flex e-con-boxed e-con e-child" data-id="d4659ed" data-element_type="container">
-					<div className="e-con-inner">
-		<div className="elementor-element elementor-element-a6a8248 e-flex e-con-boxed e-con e-child" data-id="a6a8248" data-element_type="container">
-					<div className="e-con-inner">
-				<div className="elementor-element elementor-element-f5c2210 elementor-widget elementor-widget-mf-text" data-id="f5c2210" data-element_type="widget" data-settings="{&quot;mf_input_name&quot;:&quot;mf-first-name&quot;}" data-widget_type="mf-text.default">
-				<div className="elementor-widget-container">
-					
-		<div className="mf-input-wrapper">
-							<label className="mf-input-label" htmlFor="mf-input-text-f5c2210">
-					${ parent.decodeEntities(`First Name`) } 					<span className="mf-input-required-indicator">*</span>
-				</label>
-			
-			<input
-				type="text"
-				className="mf-input mf-conditional-input"
-				id="mf-input-text-f5c2210"
-				name="mf-first-name"
-				placeholder="${ parent.decodeEntities(`Jhon`) } "
-									onInput=${parent.handleChange}
-					onBlur=${parent.handleChange}
-					aria-invalid=${validation.errors['mf-first-name'] ? 'true' : 'false'}
-					ref=${el =>{
-												parent.activateValidation({"message":"This field is required.","minLength":1,"maxLength":"","type":"none","required":true,"expression":"null"}, el)
-					}}
-								/>
-
-							<${validation.ErrorMessage}
-					errors=${validation.errors}
-					name="mf-first-name"
-					as=${html`<span className="mf-error-message"></span>`}
-					/>
-			
-					</div>
-
-						</div>
-				</div>
-					</div>
-				</div>
-		<div className="elementor-element elementor-element-946dc58 e-flex e-con-boxed e-con e-child" data-id="946dc58" data-element_type="container">
-					<div className="e-con-inner">
-				<div className="elementor-element elementor-element-9630bbe elementor-widget elementor-widget-mf-text" data-id="9630bbe" data-element_type="widget" data-settings="{&quot;mf_input_name&quot;:&quot;mf-last-name&quot;}" data-widget_type="mf-text.default">
-				<div className="elementor-widget-container">
-					
-		<div className="mf-input-wrapper">
-							<label className="mf-input-label" htmlFor="mf-input-text-9630bbe">
-					${ parent.decodeEntities(`Last Name`) } 					<span className="mf-input-required-indicator">*</span>
-				</label>
-			
-			<input
-				type="text"
-				className="mf-input mf-conditional-input"
-				id="mf-input-text-9630bbe"
-				name="mf-last-name"
-				placeholder="${ parent.decodeEntities(`Doe`) } "
-									onInput=${parent.handleChange}
-					onBlur=${parent.handleChange}
-					aria-invalid=${validation.errors['mf-last-name'] ? 'true' : 'false'}
-					ref=${el =>{
-												parent.activateValidation({"message":"This field is required.","minLength":1,"maxLength":"","type":"none","required":true,"expression":"null"}, el)
-					}}
-								/>
-
-							<${validation.ErrorMessage}
-					errors=${validation.errors}
-					name="mf-last-name"
-					as=${html`<span className="mf-error-message"></span>`}
-					/>
-			
-					</div>
-
-						</div>
-				</div>
-					</div>
-				</div>
-					</div>
-				</div>
-		<div className="elementor-element elementor-element-4511f48 e-flex e-con-boxed e-con e-child" data-id="4511f48" data-element_type="container">
-					<div className="e-con-inner">
-		<div className="elementor-element elementor-element-d94a041 e-flex e-con-boxed e-con e-child" data-id="d94a041" data-element_type="container">
-					<div className="e-con-inner">
-				<div className="elementor-element elementor-element-2dbb776 elementor-widget elementor-widget-mf-email" data-id="2dbb776" data-element_type="widget" data-settings="{&quot;mf_input_name&quot;:&quot;mf-email&quot;}" data-widget_type="mf-email.default">
-				<div className="elementor-widget-container">
-					
-		<div className="mf-input-wrapper">
-							<label className="mf-input-label" htmlFor="mf-input-email-2dbb776">
-					${ parent.decodeEntities(`Email`) } 					<span className="mf-input-required-indicator">*</span>
-				</label>
-			
-			<input 
-				type="email" 
-				 
-				defaultValue="" 
-				className="mf-input mf-conditional-input" 
-				id="mf-input-email-2dbb776" 
-				name="mf-email" 
-				placeholder="${ parent.decodeEntities(`example@mail.com`) } " 
-				 
-				onBlur=${parent.handleChange} onFocus=${parent.handleChange} aria-invalid=${validation.errors['mf-email'] ? 'true' : 'false' } 
-				ref=${el=> parent.activateValidation({"message":"This field is required.","emailMessage":"Please enter a valid Email address","minLength":1,"maxLength":"","type":"none","required":true,"expression":"null"}, el)}
-							/>
-
-						<${validation.ErrorMessage} 
-				errors=${validation.errors} 
-				name="mf-email" 
-				as=${html`<span className="mf-error-message"></span>`}
-			/>
-			
-					</div>
-
-				</div>
-				</div>
-					</div>
-				</div>
-		<div className="elementor-element elementor-element-14500dc e-flex e-con-boxed e-con e-child" data-id="14500dc" data-element_type="container">
-					<div className="e-con-inner">
-				<div className="elementor-element elementor-element-1ba57e4 elementor-widget elementor-widget-mf-telephone" data-id="1ba57e4" data-element_type="widget" data-settings="{&quot;mf_input_name&quot;:&quot;mf-telephone&quot;}" data-widget_type="mf-telephone.default">
-				<div className="elementor-widget-container">
-					
-		<div className="mf-input-wrapper">
-							<label className="mf-input-label" htmlFor="mf-input-telephone-1ba57e4">
-					${ parent.decodeEntities(`Phone`) } 					<span className="mf-input-required-indicator"></span>
-				</label>
-			
-			<input
-				type="tel"
-				className="mf-input "
-				id="mf-input-telephone-1ba57e4" 
-				name="mf-telephone"
-				placeholder="${ parent.decodeEntities(`+1 (234) 567 890`) } "
-									onInput=${parent.handleChange}
-					aria-invalid=${validation.errors['mf-telephone'] ? 'true' : 'false'}
-					ref=${el => parent.activateValidation({"message":"This field is required.","minLength":1,"maxLength":"","type":"none","required":false,"expression":"null"}, el)}
-								/>
-			
-							<${validation.ErrorMessage}
-					errors=${validation.errors}
-					name="mf-telephone"
-					as=${html`<span className="mf-error-message"></span>`}
-					/>
-			
-			
-		</div>
-
-						</div>
-				</div>
-					</div>
-				</div>
-					</div>
-				</div>
-		<div className="elementor-element elementor-element-8f52d90 e-flex e-con-boxed e-con e-child" data-id="8f52d90" data-element_type="container">
-					<div className="e-con-inner">
-				<div className="elementor-element elementor-element-830c842 elementor-widget elementor-widget-mf-textarea" data-id="830c842" data-element_type="widget" data-settings="{&quot;mf_input_name&quot;:&quot;mf-comment&quot;}" data-widget_type="mf-textarea.default">
-				<div className="elementor-widget-container">
-					
-		<div className="mf-input-wrapper">
-							<label className="mf-input-label" htmlFor="mf-input-text-area-830c842">
-					${ parent.decodeEntities(`Message`) } 					<span className="mf-input-required-indicator"></span>
-				</label>
-			
-			<textarea className="mf-input mf-textarea mf-conditional-input" id="mf-input-text-area-830c842"
-				name="mf-comment" 
-				placeholder="${ parent.decodeEntities(`Hello there!`) } "
-				cols="30" rows="10"
-									onInput=${ parent.handleChange }
-					aria-invalid=${validation.errors['mf-comment'] ? 'true' : 'false'}
-					ref=${ el => parent.activateValidation({"message":"This field is required.","minLength":1,"maxLength":"","type":"none","required":false,"expression":"null"}, el)}
-								></textarea>
-
-							<${validation.ErrorMessage}
-					errors=${validation.errors}
-					name="mf-comment"
-					as=${html`<span className="mf-error-message"></span>`}
-					/>
-								</div>
-
-						</div>
-				</div>
-					</div>
-				</div>
-				<div className="elementor-element elementor-element-d18f47b mf-btn--mobile-justify mf-btn--justify mf-btn--tablet-justify elementor-widget elementor-widget-mf-button" data-id="d18f47b" data-element_type="widget" data-widget_type="mf-button.default">
-				<div className="elementor-widget-container">
-							<div className="mf-btn-wraper mf-conditional-input" data-mf-form-conditional-logic-requirement="">
-							<button type="submit" className="metform-btn metform-submit-btn " id="">
-					<span>${ parent.decodeEntities(`Send Message`) } </span>
-				</button>
-			        </div>
-        				</div>
-				</div>
-					</div>
-				</div>
-				</div>
-							`}
-					</div>
-
-					${is_dummy_markup ? message_position === 'bottom' ? props.ResponseDummyMarkup(message_successIcon, message_proClass) : '' : ''}
-					${is_dummy_markup ? ' ' : message_position === 'bottom' ? props.SubmitResponseMarkup`${parent}${state}${message_successIcon}${message_errorIcon}${message_proClass}` : ''}
-				
-				</form>
-			`
-		</script>
+												<div class="form-row full-width">
+													<button type="submit" class="submit-btn">Send Message</button>
+												</div>
+											</form>
 
 										</div>
 									</div>
