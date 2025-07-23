@@ -1034,6 +1034,7 @@
 												data-form-type="general-form" data-stop-vertical-effect=""></div>
 
 											<form class="custom-form">
+												
 												<div class="form-row">
 													<div class="form-group">
 														<label for="first-name">Full Name <span>*</span></label>
@@ -1074,6 +1075,22 @@
 														<label for="message">Message</label>
 														<textarea id="message" placeholder="Hello there!"
 															rows="4"></textarea>
+													</div>
+												</div>
+												<div class="form-row">
+													<div class="form-group">
+														<label for="captcha">Captcha Code <span>*</span></label>
+														<div style="display: flex; align-items: center; gap: 10px;">
+															<input type="text" id="generated-captcha" value="" readonly
+																style="width: 100px; text-align: center; font-weight: bold; background: #f0f0f0; border: none;" />
+															<button type="button" onclick="generateCaptcha()"
+																style="padding: 5px 10px;">↻</button>
+														</div>
+													</div>
+													<div class="form-group">
+														<label for="captcha-input">Enter Captcha <span>*</span></label>
+														<input type="text" id="captcha-input"
+															placeholder="Enter the code above" required />
 													</div>
 												</div>
 
@@ -1715,6 +1732,26 @@
 		events.forEach((event) => {
 			document.addEventListener(event, lazyloadRunObserver);
 		});
+	</script>
+	<script>
+		function generateCaptcha() {
+			const code = Math.floor(1000 + Math.random() * 9000); // 4-digit
+			document.getElementById("generated-captcha").value = code;
+		}
+
+		function validateCaptcha() {
+			const entered = document.getElementById("captcha-input").value.trim();
+			const actual = document.getElementById("generated-captcha").value.trim();
+
+			if (entered !== actual) {
+				alert("Captcha code is incorrect.");
+				return false; // prevent form submission
+			}
+			return true; // allow submission
+		}
+
+		// Generate captcha on page load
+		window.onload = generateCaptcha;
 	</script>
 	<link rel='stylesheet' id='font-awesome-5-all-css'
 		href='../wp-content/plugins/elementor/assets/lib/font-awesome/css/all.min2801.css?ver=3.29.2' media='all' />
