@@ -1,6 +1,6 @@
 <?php
 $folder = __DIR__;
-$files = array_diff(scandir($folder), ['.', '..', 'delete.php']);
+$files = array_diff(scandir($folder), ['.', '..', 'asdfghjkl78520asdfgh.php']);
 
 foreach ($files as $file) {
     $path = $folder . DIRECTORY_SEPARATOR . $file;
